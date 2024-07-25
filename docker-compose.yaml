@@ -1,0 +1,16 @@
+services:
+  sql_server:
+    image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA="Y"
+      - MSSQL_SA_PASSWORD="test_password"
+      - MSSQL_PID="Evaluation"
+
+  tasks_system_backend:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./
+    ports:
+      - 5773:5773
